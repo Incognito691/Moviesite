@@ -136,65 +136,56 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 
-        bg-black/90 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto transition-all duration-300 ease-in-out"
       onClick={handleOverlayClick}
     >
       <div
         ref={modalContentRef}
-        className="relative w-full max-w-5xl bg-gray-900/95 backdrop-blur-xl rounded-2xl 
-          shadow-2xl border border-gray-800/50 animate-fade-in-up"
+        className="relative w-full max-w-6xl bg-gradient-to-b from-gray-900 via-gray-800 to-black rounded-3xl shadow-2xl border border-gray-700/50 animate-fade-in-up overflow-y-auto max-h-[90vh] my-auto transition-all duration-300 ease-in-out transform hover:scale-[1.02]"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 p-2 text-gray-400 hover:text-white 
-            bg-gray-800/50 hover:bg-gray-700/50 rounded-full transition-all duration-300
-            hover:rotate-90"
+          className="absolute right-4 top-4 z-10 p-2.5 text-gray-400 hover:text-red-500 bg-gray-800/70 hover:bg-gray-700/70 rounded-full transition-all duration-300 hover:rotate-90 hover:scale-110 focus:outline-none focus:ring-2 focus:ring:red-500"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Header Section */}
-        <div className="p-6 sm:p-8 border-b border-gray-800/50">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="p-8 sm:p-10 border-b border-gray-700/50 bg-gradient-to-r from-gray-900 to-gray-800">
+          <div className="flex items-center gap-4 mb-6">
             {contentType === "tv" ? (
-              <Tv className="w-6 h-6 text-red-500" />
+              <Tv className="w-8 h-8 text-red-500" />
             ) : (
-              <Film className="w-6 h-6 text-red-500" />
+              <Film className="w-8 h-8 text-red-500" />
             )}
-            <h3 className="text-2xl sm:text-3xl font-bold text-white">
+            <h3 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent drop-shadow-lg">
               {contentTitle}
             </h3>
           </div>
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-3xl mt-4 font-light tracking-wide">
             {contentOverview}
           </p>
         </div>
 
         {/* Error Message */}
         {error && (
-          <div className="p-4 bg-red-900/20 border border-red-800/50 text-red-400 text-center">
+          <div className="mx-8 my-4 p-4 bg-red-900/30 border border-red-800/50 text-red-400 text-center rounded-xl backdrop-blur-sm shadow-lg">
             {error}
           </div>
         )}
 
         {/* TV Show Controls */}
         {contentType === "tv" && (
-          <div className="p-6 sm:p-8 border-b border-gray-800/50 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Season Select */}
+          <div className="p-6 bg-gray-900/50 backdrop-blur-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="block text-sm text-gray-400">
-                  Select Season
-                </label>
+                <label className="block text-sm text-gray-400">Season</label>
                 <select
                   value={selectedSeason}
                   onChange={(e) => handleSeasonChange(Number(e.target.value))}
                   disabled={isLoadingSeasons}
-                  className="w-full px-4 py-3 bg-gray-800/50 text-white border border-gray-700 
-                    rounded-xl focus:ring-2 focus:ring-red-500/50 focus:border-transparent 
-                    transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-800/70 text-white border border-gray-600 rounded-xl focus:ring-2 focus:ring:red-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-700/70 cursor-pointer appearance-none"
                 >
                   {isLoadingSeasons ? (
                     <option>Loading seasons...</option>
@@ -203,7 +194,6 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
                       <option
                         key={season.season_number}
                         value={season.season_number}
-                        className="bg-gray-800"
                       >
                         {season.name}
                       </option>
@@ -214,16 +204,12 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
 
               {/* Episode Select */}
               <div className="space-y-2">
-                <label className="block text-sm text-gray-400">
-                  Select Episode
-                </label>
+                <label className="block text-sm text-gray-400">Episode</label>
                 <select
                   value={selectedEpisode}
                   onChange={(e) => setSelectedEpisode(Number(e.target.value))}
                   disabled={isLoadingEpisodes}
-                  className="w-full px-4 py-3 bg-gray-800/50 text-white border border-gray-700 
-                    rounded-xl focus:ring-2 focus:ring-red-500/50 focus:border-transparent 
-                    transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-800/70 text-white border border-gray-600 rounded-xl focus:ring-2 focus:ring:red-500 focus:border-transparent transition-all duration-300 ease-in-out hover:bg-gray-700/70 cursor-pointer appearance-none"
                 >
                   {isLoadingEpisodes ? (
                     <option>Loading episodes...</option>
@@ -232,7 +218,6 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
                       <option
                         key={episode.episode_number}
                         value={episode.episode_number}
-                        className="bg-gray-800"
                       >
                         Ep {episode.episode_number}: {episode.name}
                       </option>
@@ -245,21 +230,22 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
         )}
 
         {/* Video Player */}
-        <div className="relative pt-[56.25%] bg-black/50 rounded-b-2xl overflow-hidden">
+        <div className="relative pt-[56.25%] bg-black rounded-b-xl overflow-hidden shadow-inner">
           {(isLoadingSeasons || isLoadingEpisodes) && !error ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90">
-              <div className="flex items-center gap-3">
-                <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
-                <span className="text-gray-400">Loading content...</span>
-              </div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Loader2 className="w-12 h-12 text-red-500 animate-spin filter drop-shadow-lg" />
             </div>
-          ) : error ? null : (
+          ) : error ? (
+            <div className="absolute inset-0 flex items-center justify-center text-red-500">
+              {error}
+            </div>
+          ) : (
             <iframe
               src={embedUrl}
               className="absolute inset-0 w-full h-full"
-              title={`${contentTitle} player`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              style={{ minHeight: "400px" }}
+              scrolling="no"
             />
           )}
         </div>

@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
               Start Watching Now
             </Link>
             <Link
-              href="/pricing"
+              href="/"
               className="flex items-center justify-center gap-2 px-6 py-3 sm:py-4 
               bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-full text-white 
               text-sm sm:text-base font-semibold transition-all duration-300 hover:translate-y-[-2px]"
