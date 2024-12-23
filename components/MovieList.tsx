@@ -183,7 +183,9 @@ const MovieList = () => {
               {hasMore && (
                 <div className="mt-12 text-center">
                   <button
-                    onClick={handleLoadMore}
+                    onClick={()=>{
+                      handleLoadMore(); 
+                    }}
                     disabled={isLoadingMore}
                     className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full 
                       transition-all duration-300 hover:translate-y-[-2px] disabled:opacity-50 
