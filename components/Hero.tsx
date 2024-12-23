@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import ReactPlayer from "react-player";
 import { Play, Film, PlayCircle } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ReactPlayer = dynamic(() => import("react-player"), {ssr: false});
 
 const Hero: React.FC = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -32,7 +34,7 @@ const Hero: React.FC = () => {
               <PlayCircle className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 animate-pulse" />
               <span className="text-lg sm:text-xl text-white">Loading...</span>
             </div>
-          </div>
+          </div>            
         )}
       </div>
 
