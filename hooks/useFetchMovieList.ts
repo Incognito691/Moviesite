@@ -53,7 +53,7 @@ const useFetchMovieList = ({
       const currentType = category === "tv_shows" ? "tv" : "movie";
 
       if (searchQuery.trim()) {
-        return `https://api.themoviedb.org/3/search/${currentType}?${baseParams}&query=${encodeURIComponent(
+        return `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/search/${currentType}?${baseParams}&query=${encodeURIComponent(
           searchQuery.trim()
         )}&include_adult=false`;
       }
@@ -65,7 +65,7 @@ const useFetchMovieList = ({
               category as keyof typeof API_ENDPOINTS.movie
             ];
 
-      return `https://api.themoviedb.org/3/${endpoint}?${baseParams}`;
+      return `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/${endpoint}?${baseParams}`;
     },
     [category, searchQuery]
   );
