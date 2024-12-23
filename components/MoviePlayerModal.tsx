@@ -23,7 +23,6 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
   const [isLoadingEpisodes, setIsLoadingEpisodes] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const BASE_URL = "https://api.themoviedb.org/3";
 
   const fetchEpisodes = useCallback(
     async (seasonNumber: number) => {
@@ -36,7 +35,7 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
       setError(null);
       try {
         const response = await fetch(
-          `${BASE_URL}/tv/${contentId}/season/${seasonNumber}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
+          `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/tv/${contentId}/season/${seasonNumber}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
         );
 
         if (!response.ok) {
@@ -53,7 +52,7 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
         setIsLoadingEpisodes(false);
       }
     },
-    [contentId, process.env.NEXT_PUBLIC_TMDB_API_KEY]
+    [contentId]
   );
 
   const fetchSeasons = useCallback(async () => {
@@ -66,7 +65,7 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
     setError(null);
     try {
       const response = await fetch(
-        `${BASE_URL}/tv/${contentId}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
+        `${process.env.NEXT_PUBLIC_TMDB_BASE_URL}/tv/${contentId}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&language=en-US`
       );
 
       if (!response.ok) {
@@ -89,7 +88,7 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
     } finally {
       setIsLoadingSeasons(false);
     }
-  }, [contentId, process.env.NEXT_PUBLIC_TMDB_API_KEY, fetchEpisodes]);
+  }, [contentId, fetchEpisodes]);
 
   const embedUrl = useMemo(() => {
     return contentType === "movie"
