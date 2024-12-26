@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
 
   return (
     <div className="relative h-screen w-full bg-gradient-to-b from-black to-gray-900 overflow-hidden">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0" >
         <ReactPlayer
           className="absolute top-0 left-0 w-full h-full object-cover"
           url="/video.mp4"
@@ -24,8 +24,8 @@ const Hero: React.FC = () => {
           playsinline
           onReady={() => setIsVideoLoaded(true)}
           style={{
-            opacity: isVideoLoaded ? 0.3 : 0,
-            transition: "opacity 1.5s ease-in-out",
+            opacity: isVideoLoaded ? 0.5 : 0,
+            transition: "opacity 1.1s ease-in-out",
           }}
         />
         {!isVideoLoaded && (

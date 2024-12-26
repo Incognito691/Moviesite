@@ -243,8 +243,7 @@ const MoviePlayerModal: React.FC<EnhancedMoviePlayerModalProps> = ({
           src={embedUrl}
           className="absolute inset-0 w-full h-full"
           allowFullScreen
-          style={{ minHeight: "300px" }}
-          scrolling="no"
+          style={{ minHeight: "220px" }}
           loading="lazy"
         />
       )}
